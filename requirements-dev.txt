@@ -7,3 +7,4 @@ lightgbm
 scikit-learn
 joblib
 dvc[s3]
+pytest
