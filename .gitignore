@@ -6,6 +6,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+food/
 .Python
 env/
 build/
