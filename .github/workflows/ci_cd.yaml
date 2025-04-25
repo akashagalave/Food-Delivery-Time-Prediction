@@ -97,7 +97,7 @@ jobs:
             --application-name food-delivery-time \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --deployment-group-name food-delivery-time-deployment-group \
-            --s3-location bucket=deliverytimepredictiondeployment,key=deployment.zip,bundleType=zip \
+            --s3-location bucket=deliverytimepredictiondeployments,key=deployment.zip,bundleType=zip \
             --file-exists-behavior OVERWRITE \
             --region ap-south-1
 
