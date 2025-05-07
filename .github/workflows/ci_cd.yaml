@@ -94,9 +94,9 @@ jobs:
             aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws deploy create-deployment \
-            --application-name Delivery-Time-Prediction \
+            --application-name Food-Delivery-Time-Prediction-App \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name Food-Delivery-group \
+            --deployment-group-name Food-Delivery-Time-Prediction-Deployment-Group \
             --s3-location bucket=deliverytimepredictiondeployments,key=deployment.zip,bundleType=zip \
             --file-exists-behavior OVERWRITE \
             --region ap-south-1
