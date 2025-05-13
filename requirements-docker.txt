@@ -1,8 +1,11 @@
 fastapi[standard]
-scikit-learn == 1.5.2
+scikit-learn==1.5.2
 pandas
 numpy
 mlflow
 joblib
 dagshub
 lightgbm
+uvicorn[standard]  # For running the FastAPI server
+requests  # Required for HTTP requests if needed (e.g., for MLflow or Dagshub API calls)
+gunicorn  # Optional for serving FastAPI in production (better performance for production deployments)

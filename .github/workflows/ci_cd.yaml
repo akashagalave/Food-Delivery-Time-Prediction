@@ -91,9 +91,9 @@ jobs:
         if: success()
         run: |
             aws deploy create-deployment \
-            --application-name foods-delivery \
+            --application-name Food-Application \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name foods-delivery-deployment-group \
+            --deployment-group-name Food-Application-Deployment-Group \
             --s3-location bucket=deliverytimepredictiondeployments,key=deployment.zip,bundleType=zip \
             --file-exists-behavior OVERWRITE \
             --region ap-south-1

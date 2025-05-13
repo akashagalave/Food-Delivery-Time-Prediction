@@ -20,6 +20,6 @@ if [ "$(docker ps -aq -f name=food-time-prediction)" ]; then
 fi
 
 echo "Starting new container..."
-docker run -d -p 80:8000 --name food-time-prediction -e DAGSHUB_USER_TOKEN=d5e96b8bd217dd881bdb17e4859486e8f93bbbe4 868402157267.dkr.ecr.ap-south-1.amazonaws.com/food-time-prediction:latest
+docker run -d -p 8000:8000 --name food-time-prediction -e DAGSHUB_USER_TOKEN=d5e96b8bd217dd881bdb17e4859486e8f93bbbe4 868402157267.dkr.ecr.ap-south-1.amazonaws.com/food-time-prediction:latest
 
 echo "Container started successfully."
