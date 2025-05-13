@@ -27,8 +27,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: DVC Pull
+      - name: Configure DVC Remote
         run: |
+          dvc remote add -d origin s3://food-time-prediction
+          dvc remote modify origin access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          dvc remote modify origin secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           dvc pull
 
       - name: Test Model Registry
@@ -94,9 +97,9 @@ jobs:
             aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws deploy create-deployment \
-            --application-name food-delivery-time-predictions \
+            --application-name Foods-Delivery-Time-Prediction \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name food-delivery-time-prediction-group \
+            --deployment-group-name Foods-Delivery-Time-Prediction-Group \
             --s3-location bucket=deliverytimepredictiondeployments,key=deployment.zip,bundleType=zip \
             --file-exists-behavior OVERWRITE \
             --region ap-south-1
