@@ -1,14 +1,19 @@
-version: 0.0
-os: linux
+version: 0.0  # Version of the AppSpec file
+os: linux  # Specifies the operating system
+
+# Define which files to copy from the source repository to the destination on the EC2 instance
 files:
-  - source: /
-    destination: /home/ubuntu/app
+  - source: /  # The source refers to the entire repository, including all files and directories.
+    destination: /home/ubuntu/app  # Destination directory on the EC2 instance
+
+# Hooks to run scripts during the deployment process
 hooks:
   BeforeInstall:
-    - location: deploy/scripts/install_dependencies.sh
-      timeout: 300
-      runas: ubuntu
+    - location: deploy/scripts/install_dependencies.sh  # Path to the script to install dependencies
+      timeout: 180  # Timeout set to 180 seconds (3 minutes)
+      runas: ubuntu  # Run this script as the ubuntu user
+
   ApplicationStart:
-    - location: deploy/scripts/start_docker.sh
-      timeout: 300
-      runas: ubuntu
+    - location: deploy/scripts/start_docker.sh  # Path to the script to start Docker container
+      timeout: 180  # Timeout set to 180 seconds (3 minutes)
+      runas: ubuntu  # Run this script as the ubuntu user
