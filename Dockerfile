@@ -8,10 +8,10 @@ RUN apt-get update && apt-get install -y libgomp1
 WORKDIR /app
 
 # copy the requirements file
-COPY requirements-dockers.txt ./
+COPY requirements-docker.txt ./
 
 # install the packages
-RUN pip install --no-cache-dir -r requirements-dockers.txt
+RUN pip install --no-cache-dir -r requirements-docker.txt
 
 # create directories for templates and static files
 RUN mkdir -p templates static
