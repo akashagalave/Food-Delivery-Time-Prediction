@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from sklearn.pipeline import Pipeline
 import uvicorn
@@ -25,7 +25,7 @@ dagshub.init(repo_owner='akashagalaveaaa1', repo_name='Food-Delivery-Time-Predic
 mlflow.set_tracking_uri("https://dagshub.com/akashagalaveaaa1/Food-Delivery-Time-Prediction.mlflow")
 
 
-class Data(BaseModel):  
+class Data(BaseModel):
     ID: str
     Delivery_person_ID: str
     Delivery_person_Age: str
@@ -46,19 +46,17 @@ class Data(BaseModel):
     Festival: str
     City: str
 
-    
-    
+
 def load_model_information(file_path):
     with open(file_path) as f:
         run_info = json.load(f)
-        
+
     return run_info
 
 
 def load_transformer(transformer_path):
     transformer = joblib.load(transformer_path)
     return transformer
-
 
 
 # columns to preprocess in data
@@ -114,9 +112,12 @@ app = FastAPI()
 def home():
     return "Welcome to the  Food Delivery Time Prediction App"
 
-# create the predict endpoint
-from fastapi import HTTPException
+# **ADD THIS HEALTH CHECK ENDPOINT**
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
 
+# create the predict endpoint
 @app.post(path="/predict")
 def do_predictions(data: Data):
     try:
@@ -141,7 +142,7 @@ def do_predictions(data: Data):
             'Festival': data.Festival,
             'City': data.City
         }, index=[0])
-        
+
         print(" Raw Input:\n", pred_data)
 
         # clean the raw input data
@@ -153,12 +154,11 @@ def do_predictions(data: Data):
         print(" Prediction Result:", prediction)
 
         return {"prediction": float(prediction)}
-    
+
     except Exception as e:
         print(" Error in prediction route:", str(e))
         raise HTTPException(status_code=500, detail="Prediction failed")
 
-   
-   
+
 if __name__ == "__main__":
     uvicorn.run(app="app:app",host="0.0.0.0",port=8000)
