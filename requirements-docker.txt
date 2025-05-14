@@ -9,3 +9,5 @@ lightgbm
 uvicorn[standard]  # For running the FastAPI server
 requests  # Required for HTTP requests if needed (e.g., for MLflow or Dagshub API calls)
 gunicorn  # Optional for serving FastAPI in production (better performance for production deployments)
+streamlit
+streamlit-lottie

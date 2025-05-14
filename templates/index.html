@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Time Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Food Delivery Time Prediction</h1>
+        <form class="prediction-form" action="/predict" method="post">
+            <div class="form-group">
+                <label for="ID">Order ID</label>
+                <input type="text" id="ID" name="ID" required>
+            </div>
+            <div class="form-group">
+                <label for="Delivery_person_ID">Delivery Person ID</label>
+                <input type="text" id="Delivery_person_ID" name="Delivery_person_ID" required>
+            </div>
+            <div class="form-group">
+                <label for="Delivery_person_Age">Delivery Person Age</label>
+                <input type="number" id="Delivery_person_Age" name="Delivery_person_Age" required>
+            </div>
+            <div class="form-group">
+                <label for="Delivery_person_Ratings">Delivery Person Ratings</label>
+                <input type="number" step="any" id="Delivery_person_Ratings" name="Delivery_person_Ratings" required>
+            </div>
+            <div class="form-group">
+                <label for="Restaurant_latitude">Restaurant Latitude</label>
+                <input type="number" step="any" id="Restaurant_latitude" name="Restaurant_latitude" required>
+            </div>
+            <div class="form-group">
+                <label for="Restaurant_longitude">Restaurant Longitude</label>
+                <input type="number" step="any" id="Restaurant_longitude" name="Restaurant_longitude" required>
+            </div>
+            <div class="form-group">
+                <label for="Delivery_location_latitude">Delivery Location Latitude</label>
+                <input type="number" step="any" id="Delivery_location_latitude" name="Delivery_location_latitude" required>
+            </div>
+            <div class="form-group">
+                <label for="Delivery_location_longitude">Delivery Location Longitude</label>
+                <input type="number" step="any" id="Delivery_location_longitude" name="Delivery_location_longitude" required>
+            </div>
+            <div class="form-group">
+                <label for="Order_Date">Order Date (YYYY-MM-DD)</label>
+                <input type="text" id="Order_Date" name="Order_Date" required>
+            </div>
+            <div class="form-group">
+                <label for="Time_Orderd">Order Time (HH:MM:SS)</label>
+                <input type="text" id="Time_Orderd" name="Time_Orderd" required>
+            </div>
+            <div class="form-group">
+                <label for="Time_Order_picked">Pickup Time (HH:MM:SS)</label>
+                <input type="text" id="Time_Order_picked" name="Time_Order_picked" required>
+            </div>
+            <div class="form-group">
+                <label for="Weatherconditions">Weather Conditions</label>
+                <select id="Weatherconditions" name="Weatherconditions" required>
+                    <option value="">Select Weather</option>
+                    <option value="Sunny">Sunny</option>
+                    <option value="Stormy">Stormy</option>
+                    <option value="Sandstorms">Sandstorms</option>
+                    <option value="Cloudy">Cloudy</option>
+                    <option value="Fog">Fog</option>
+                    <option value="Windy">Windy</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Road_traffic_density">Road Traffic Density</label>
+                <select id="Road_traffic_density" name="Road_traffic_density" required>
+                    <option value="">Select Traffic</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Jam">Jam</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Vehicle_condition">Vehicle Condition (0-10)</label>
+                <input type="number" id="Vehicle_condition" name="Vehicle_condition" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="Type_of_order">Type of Order</label>
+                <select id="Type_of_order" name="Type_of_order" required>
+                    <option value="">Select Order Type</option>
+                    <option value="Snack">Snack</option>
+                    <option value="Meal">Meal</option>
+                    <option value="Drinks">Drinks</option>
+                    <option value="Buffet">Buffet</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Type_of_vehicle">Type of Vehicle</label>
+                <select id="Type_of_vehicle" name="Type_of_vehicle" required>
+                    <option value="">Select Vehicle Type</option>
+                    <option value="Scooter">Scooter</option>
+                    <option value="Bike">Bike</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="multiple_deliveries">Multiple Deliveries</label>
+                <input type="text" id="multiple_deliveries" name="multiple_deliveries" required>
+            </div>
+            <div class="form-group">
+                <label for="Festival">Festival</label>
+                <select id="Festival" name="Festival" required>
+                    <option value="">Is it a Festival?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="City">City Type</label>
+                <select id="City" name="City" required>
+                    <option value="">Select City Type</option>
+                    <option value="Urban">Urban</option>
+                    <option value="Semi-Urban">Semi-Urban</option>
+                    <option value="Metropolitan">Metropolitan</option>
+                </select>
+            </div>
+            <button type="submit" class="predict-button">Predict Delivery Time</button>
+            {% if result %}
+            <div class="prediction-result">
+                <h2>Prediction Result:</h2>
+                <p>{{ result }}</p>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

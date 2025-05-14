@@ -8,19 +8,24 @@ RUN apt-get update && apt-get install -y libgomp1
 WORKDIR /app
 
 # copy the requirements file
-COPY requirements-docker.txt ./
+COPY requirements-dockers.txt ./
 
 # install the packages
-RUN pip install -r requirements-docker.txt
+RUN pip install --no-cache-dir -r requirements-dockers.txt
+
+# create directories for templates and static files
+RUN mkdir -p templates static
 
 # copy the app contents
 COPY app.py ./
 COPY ./models/preprocessor.joblib ./models/preprocessor.joblib
 COPY ./scripts/data_clean_utils.py ./scripts/data_clean_utils.py
 COPY ./run_information.json ./
+COPY ./templates ./templates
+COPY ./static ./static
 
 # expose the port
 EXPOSE 8000
 
-# Run the file using command
-CMD [ "python","./app.py" ]
+# run the app with uvicorn
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
