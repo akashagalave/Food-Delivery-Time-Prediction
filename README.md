@@ -100,8 +100,8 @@ Customers often experience long or unpredictable delivery times, which leads to 
 
 ▶️ **Watch the App Running on AWS**
 
-![App Screenshot 1](path/to/screenshot1.png)  
-![App Screenshot 2](path/to/screenshot2.png)  
+![App Screenshot 1](Demo_Result/screenshot1.png)  
+![App Screenshot 2](Demo_Result/screenshot2.png)  
 
 
 ---
