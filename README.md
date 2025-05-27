@@ -111,8 +111,8 @@ Customers often experience long or unpredictable delivery times, which leads to 
 ### 1️⃣ Clone and Install
 
 ```bash
-git clone https://github.com/akashagalave/Food-Delivery-Time-Prediction.git
-cd Food-Delivery-Time-Prediction
+git clone https://github.com/akashagalave/Smart-Food-Delivery-ETA-Predictor.git
+cd Smart-Food-Delivery-ETA-Predictor
 pip install -r requirements.txt
 ```
 
